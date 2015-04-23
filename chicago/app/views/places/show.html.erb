@@ -1,0 +1,39 @@
+<h2><%= @place.title %></h2>
+<p>
+	<%= link_to "Edit", "/places/#{@place.id}/edit" %><br>
+	Price: <%= number_to_currency(@place.price) %>
+</p>
+
+<%= image_tag @place.photo_url %>
+
+<p></p>
+
+<p><%= @place.description %></p>
+
+<p></p>
+
+<h3>Reviews</h3>
+<form action="/places/<%= @place.id %>/submit_review" id="reviewform">
+	<select name="rating">
+		<option value=5>5 stars</option>
+		<option value=4>4 stars</option>
+		<option value=3>3 stars</option>
+		<option value=2>2 stars</option>
+		<option value=1>1 star</option>
+		<option value=0>0 stars</option>
+	</select>
+	<input name="title" placeholder="Title"><br>
+</form>
+<p></p>
+<textarea name="description" form="reviewform" placeholder="Comments..." rows="3" cols="60"></textarea><br>
+<button form="reviewform">Submit</button>
+
+<p></p>
+
+<% @reviews.each do |review| %>
+	<p>
+		<h5><%= review.title %> (<%= review.rating %> stars)</h5>
+		<%= review.description %>
+	</p>
+<% end %>
+

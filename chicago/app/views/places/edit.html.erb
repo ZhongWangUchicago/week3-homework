@@ -1,0 +1,14 @@
+<h2>Edit <%= @place.title %></h2>
+
+<form action="/places/<%= @place.id %>/update" id="placeform">
+	Place<br>
+	<input name="title" size="40" value="<%= @place.title %>"><br>
+	Image URL<br>
+	<input name="photo_url" size="80" value="<%= @place.photo_url %>"><br>
+	Price<br>
+	<input type="number" name="price" step="0.01" min=0 value="<%= number_with_precision(@place.price, :precision => 2) %>"><br>
+</form>
+
+Description<br>
+<textarea name="description" form="placeform" rows="3" cols="80"><%= @place.description %></textarea><br>
+<button form="placeform">Update</button>
